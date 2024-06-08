@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\madesystem\\Downloads\\PacketSession\\DummyClient\\DummyClient.csproj",
+      "projectUniqueName": "C:\\ServerEngine\\C#_Socket\\DummyClient\\DummyClient.csproj",
       "projectName": "DummyClient",
-      "projectPath": "C:\\Users\\madesystem\\Downloads\\PacketSession\\DummyClient\\DummyClient.csproj",
+      "projectPath": "C:\\ServerEngine\\C#_Socket\\DummyClient\\DummyClient.csproj",
       "packagesPath": "C:\\Users\\madesystem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\madesystem\\Downloads\\PacketSession\\DummyClient\\obj\\",
+      "outputPath": "C:\\ServerEngine\\C#_Socket\\DummyClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\madesystem\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\madesystem\\Downloads\\PacketSession\\ServerCore\\ServerCore.csproj": {
-              "projectPath": "C:\\Users\\madesystem\\Downloads\\PacketSession\\ServerCore\\ServerCore.csproj"
+            "C:\\ServerEngine\\C#_Socket\\ServerCore\\ServerCore.csproj": {
+              "projectPath": "C:\\ServerEngine\\C#_Socket\\ServerCore\\ServerCore.csproj"
             }
           }
         }

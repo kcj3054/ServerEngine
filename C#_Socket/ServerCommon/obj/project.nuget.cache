@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "SJ9KSOIqHoob8zc2gn97iDVgqG/WK05wr6f321TfwDf+bfv5gv70RgUoLC8X2tVi2mbJ+1wEOagvpWsJQgLdDg==",
+  "success": true,
+  "projectFilePath": "C:\\ServerEngine\\C#_Socket\\ServerCommon\\ServerCommon.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\madesystem\\.nuget\\packages\\google.protobuf\\3.27.1\\google.protobuf.3.27.1.nupkg.sha512"
+  ],
+  "logs": []
+}

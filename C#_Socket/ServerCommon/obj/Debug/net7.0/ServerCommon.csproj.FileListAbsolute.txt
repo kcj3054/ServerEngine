@@ -1,0 +1,12 @@
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net7.0\ServerCommon.GeneratedMSBuildEditorConfig.editorconfig
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net7.0\ServerCommon.AssemblyInfoInputs.cache
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net7.0\ServerCommon.AssemblyInfo.cs
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net7.0\ServerCommon.csproj.CoreCompileInputs.cache
+C:\ServerEngine\C#_Socket\ServerCommon\bin\Debug\net7.0\ServerCommon.deps.json
+C:\ServerEngine\C#_Socket\ServerCommon\bin\Debug\net7.0\ServerCommon.dll
+C:\ServerEngine\C#_Socket\ServerCommon\bin\Debug\net7.0\ServerCommon.pdb
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net7.0\ServerCommon.csproj.AssemblyReference.cache
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net7.0\ServerCommon.dll
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net7.0\refint\ServerCommon.dll
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net7.0\ServerCommon.pdb
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net7.0\ref\ServerCommon.dll

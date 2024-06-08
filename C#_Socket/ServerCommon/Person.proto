@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+enum PacketID {
+    Unknown = 0;  // 첫 번째 값은 0이어야 합니다.
+    PlayerInfoReq = 1;
+    PlayerInfoOk = 2;
+}
+
+message PlayerInfoReqMessage {
+    int64 playerId = 1;
+}
+
+message PlayerInfoOkMessage {
+    int32 hp = 1;
+    int32 attack = 2;
+}

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bPynFb90YvaxnKNLEMDvu5DMSVPEo4Lalouw6BGZ99IuIoRi5bg6t/j1sB8bo+q0ijmJ+P904dyZxH4OF0Uecw==",
+  "dgSpecHash": "/u+rSQjl0JkM5pi8UdOO7K1lnpf9Wmoo+KLCwODFvvO8Gyuzq060QkI6SXW2xUZqDfAyLjoR3h/yhToNkjh73A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\madesystem\\Downloads\\PacketSession\\DummyClient\\DummyClient.csproj",
+  "projectFilePath": "C:\\ServerEngine\\C#_Socket\\DummyClient\\DummyClient.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,5 +1,4 @@
-﻿using Server;
-using ServerCore;
+﻿using ServerCore;
 using System;
 using System.Net;
 using System.Threading;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 string host = Dns.GetHostName();
 IPHostEntry ipHost = Dns.GetHostEntry(host);
-IPAddress ipAddr = ipHost.AddressList[0];
+IPAddress ipAddr = ipHost.AddressList[1];
 IPEndPoint endPoint = new (ipAddr, 7777);
 
 Listener _listener = new();

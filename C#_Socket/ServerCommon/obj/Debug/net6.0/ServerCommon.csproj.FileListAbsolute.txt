@@ -1,0 +1,4 @@
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net6.0\ServerCommon.GeneratedMSBuildEditorConfig.editorconfig
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net6.0\ServerCommon.AssemblyInfoInputs.cache
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net6.0\ServerCommon.AssemblyInfo.cs
+C:\ServerEngine\C#_Socket\ServerCommon\obj\Debug\net6.0\ServerCommon.csproj.CoreCompileInputs.cache
