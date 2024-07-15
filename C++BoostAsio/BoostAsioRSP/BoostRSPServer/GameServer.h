@@ -3,6 +3,7 @@
 #include <boost/bind/bind.hpp>
 
 #include "Session.h"
+#include "Packet.h"
 
 class GameServer
 {
@@ -30,9 +31,13 @@ public:
 		for (int i = 0; i < 100; ++i)
 		{
 			//new session 다른 방법으로 보기, 그리고 인자넘기는 이유 찾아보기 
-			auto session = new Session(i, (boost::asio::io_context&)acceptor.get_executor().context()
-				);
-			sessionList.push_back(session);
+			/*auto session = new Session(i, (boost::asio::io_context&)acceptor.get_executor().context()
+				);*/
+
+			//unique_ptr로 관리 
+			auto session = std::make_unique<Session>(i, (boost::asio::io_context&)acceptor.get_executor().context());
+			sessionList.push_back(std::move(session));
+
 			sessionQueue.push_back(i);
 		}
 	}
@@ -47,22 +52,27 @@ public:
 	void ProcessPacket(const int sessionID, const char* data)
 	{
 		// packet header ..
-
-		//packet id에 따른 invoke
+		auto packetHeader = reinterpret_cast<const PacketHeader*>(data);
 
 		//미리 dictionary 같은 곳에 packet들을 등록해놓는 부분으로 수정 
-
+		//이러한 switch case는 데이터가 많이지면 코드가 복잡해진다 (todo 변경)
+		switch (packetHeader->packetID)
+		{
+		default:
+			break;
+		}
 		
+		//다시 session -> receive 걸어 줌 
+
 		//비동기에서 Post를 많이 붙이긴 함 -> Async로 변경하면 어떨까 고민
 		// sessionList[sessionID]->PostSend();
 	}
 
 	void CloseSession(const int sessionID)
 	{
-		// COUT << SESSION ID... 
+		sessionList[sessionID]->GetSocket().close();
 
-		// sessionList[sessionID]->socket
-
+		//이렇게 해도 문제아닌가? sessionList에 존재하는거들은 unique_ptr로 관리되니..
 		sessionQueue.push_back(sessionID); //session pool에 다시 반납 
 
 		//검색 
@@ -86,12 +96,13 @@ private:
 			//  &GameServer::handle_accept에 전달할 인자 1
 			// &GameServer::handle_accept에 전달할 인자 2
 
-			boost::bind(&GameServer::handle_accept, this, sessionList[sessionID],
+			boost::bind(&GameServer::handle_accept, this, sessionList[sessionID].get(),
 				boost::asio::placeholders::error));
 
 		return true; // 굳이? 
 	}
 
+	//session의 소유권은 여전히 sessionList에 존재한다 
 	void handle_accept(Session* session, const boost::system::error_code& error)
 	{
 		if (error)
@@ -112,7 +123,8 @@ private:
 	*/
 	boost::asio::ip::tcp::acceptor acceptor; //boost asio의 acceptor 
 
-	std::vector<Session*> sessionList;
+	// std::vector<Session*> sessionList;
+	std::vector<std::unique_ptr<Session>> sessionList;
 	std::deque<int> sessionQueue;
 };
 

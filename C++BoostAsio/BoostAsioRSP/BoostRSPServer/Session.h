@@ -5,6 +5,9 @@
 
 #include <queue>
 
+// 수정하는 방향으로 가자 PacketManger를 따로 두고 
+class GameServer;
+
 class Session
 {
 public:
