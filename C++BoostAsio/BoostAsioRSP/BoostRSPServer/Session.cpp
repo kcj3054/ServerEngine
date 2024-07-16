@@ -48,6 +48,10 @@ void Session::PostRecv()
 	* async_read_some stream쪽에서 많이 사용 
 	* async_receive UDP 쪽에서 많이 사용 
 	*/
+
+	//Recv걸릴 때 clena해서 데이터 깔끔하게 .. 
+	recvBuffer.clean();
+
 	socket.async_read_some(
 		boost::asio::buffer(reeiveBuff),
 		boost::bind(& Session::HandleReceive, this,
