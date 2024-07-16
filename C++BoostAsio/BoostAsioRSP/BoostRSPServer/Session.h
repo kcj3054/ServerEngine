@@ -11,10 +11,12 @@ class GameServer;
 class Session
 {
 public:
-	Session(int sessionID, boost::asio::io_context& io_context);
+	Session(int sessionID, boost::asio::io_context& io_context, GameServer* pServer);
 	~Session();
 
-	void PostSend(const int size, char* data);
+	int SessionID() { return sessionID; }
+
+	void PostSend(bool immediately, const int size, char* data);
 
 	void PostRecv();
 
@@ -31,7 +33,8 @@ private:
 	int sessionID = 0; //session ID
 
 	//RECVBUFF 
-	int packetBufferMakr = 0;  // packetBufferMakr는 현재 버퍼의 위치를 추적함 
+	int dataEndPos = 0;  // 현재까지 패킷 버퍼에 저장된 데이터의 끝을 가리킴 
+	
 	std::array<char, 65536> packetBuffer{}; // 수신된 packet 데이터를 저장하고 처리
 	std::array<char, 65536> reeiveBuff{};
 
@@ -43,5 +46,6 @@ private:
 	boost::asio::ip::tcp::socket socket; //현재 session의 socket
 	std::queue<char*> sendQueue;//SendQueue 
 
+	GameServer* pServer;
 };
 

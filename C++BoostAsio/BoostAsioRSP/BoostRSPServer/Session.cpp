@@ -1,10 +1,11 @@
 #include "Session.h"
 #include "Packet.h"
 
-Session::Session(int sessionID, boost::asio::io_context& io_context)
+Session::Session(int sessionID, boost::asio::io_context& io_context, GameServer* pServer)
 	: 
 	socket(io_context.get_executor()),
-	sessionID(sessionID)
+	sessionID(sessionID),
+	pServer(pServer)
 {
 }
 
@@ -17,7 +18,7 @@ Session::~Session()
 	}
 }
 
-void Session::PostSend(const int size, char* data)
+void Session::PostSend(const bool bImmediately, const int size, char* data)
 {
 	char* sendData = new char[size];
 	memcpy(sendData, data, size);
@@ -53,7 +54,7 @@ void Session::PostRecv()
 
 void Session::HandleWrite(const boost::system::error_code& error, int byteTransferred)
 {
-
+	delete[] sendQueue.front();
 }
 
 void Session::HandleReceive(const boost::system::error_code& error, int byteTransferred)
@@ -69,9 +70,9 @@ void Session::HandleReceive(const boost::system::error_code& error, int byteTran
 	}
 
 	//수신된 데이터 처리 
-	memcpy(&packetBuffer[packetBufferMakr], reeiveBuff.data(), byteTransferred);
+	memcpy(&packetBuffer[dataEndPos], reeiveBuff.data(), byteTransferred);
 
-	int packetData = packetBufferMakr + static_cast<int>(byteTransferred);
+	int packetData = dataEndPos + static_cast<int>(byteTransferred);
 	int readData = 0;
 
 	//data를 받았다 

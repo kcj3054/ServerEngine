@@ -3,14 +3,15 @@
 
 class RecvBuffer
 {
+	enum {BUFFER_COUNT = 10};
 public:
 	RecvBuffer(int bufferSize);
-	~RecvBuffer();
+	~RecvBuffer() = default;
 
 	//read write pos 위치 옮기기 
 	void	clean();
-	void	OnRead();
-	void	OnWrite();
+	bool    OnRead(int numOfBytes);
+	bool	OnWrite(int numOfBytes);
 
 	char* ReadPos() { return &buffer[readPos]; }
 	char* WritePos() { return &buffer[writePos]; }
@@ -22,6 +23,7 @@ public:
 	int	  FreeSzie() { return bufferSize - writePos; }
 private:
 
+	int capacity = 0;
 	int bufferSize = 0;
 	int readPos = 0;
 	int writePos = 0;
