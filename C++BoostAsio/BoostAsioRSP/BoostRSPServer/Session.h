@@ -5,6 +5,8 @@
 
 #include <queue>
 
+#include "RecvBuffer.h"
+
 // 수정하는 방향으로 가자 PacketManger를 따로 두고 
 class GameServer;
 
@@ -35,6 +37,8 @@ private:
 	//RECVBUFF 
 	int dataEndPos = 0;  // 현재까지 패킷 버퍼에 저장된 데이터의 끝을 가리킴 
 	
+
+	RecvBuffer recvBuffer;
 	std::array<char, 65536> packetBuffer{}; // 수신된 packet 데이터를 저장하고 처리
 	std::array<char, 65536> reeiveBuff{};
 

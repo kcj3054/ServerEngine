@@ -1,6 +1,8 @@
 #include "Session.h"
 #include "Packet.h"
 
+#include "GameServer.h"
+
 Session::Session(int sessionID, boost::asio::io_context& io_context, GameServer* pServer)
 	: 
 	socket(io_context.get_executor()),
@@ -70,7 +72,8 @@ void Session::HandleReceive(const boost::system::error_code& error, int byteTran
 	}
 
 	//수신된 데이터 처리 
-	memcpy(&packetBuffer[dataEndPos], reeiveBuff.data(), byteTransferred);
+	// memcpy(&packetBuffer[dataEndPos], reeiveBuff.data(), byteTransferred);
+	recvBuffer.OnWrite(byteTransferred); // recvBuffer를 사용하면 위 구문 대체 가능 
 
 	int packetData = dataEndPos + static_cast<int>(byteTransferred);
 	int readData = 0;
@@ -84,7 +87,8 @@ void Session::HandleReceive(const boost::system::error_code& error, int byteTran
 			return;
 		}
 
-		auto packetHeader = (PacketHeader*)&packetBuffer[readData];
+		// auto packetHeader = (PacketHeader*)&packetBuffer[readData];
+		auto packetHeader = reinterpret_cast<PacketHeader*>(& packetBuffer[readData]);
 
 		//하나의 패킷으로 조립 불가 
 		if (packetHeader->packetSize > packetData)
@@ -93,11 +97,21 @@ void Session::HandleReceive(const boost::system::error_code& error, int byteTran
 		}
 
 		if (packetHeader->packetSize <= packetData)
-		{
-			//todo : ProcessPacket  구문 적용 
-			 
-			packetData -= packetHeader->packetSize;
+		{ 
+			//로직 단 
+			pServer->ProcessPacket(sessionID, &packetBuffer[readData]);
+
+			packetData -= packetHeader->packetSize; 
 			readData += packetHeader->packetSize;
 		}
 	}
+
+	//RecvBuffer로 다 대체 가능 함 
+	//Data가 남을 경우 (DATA는 남았으나 하나의 패킷을 조립하기에 부족한 경우
+	if (packetData > 0)
+	{
+		// todo data 복사 
+	}
+
+	PostRecv();
 }
