@@ -2,7 +2,7 @@
 
 #include <boost/asio.hpp>
 #include <boost/bind/bind.hpp>
-
+#include <boost/circular_buffer.hpp>
 #include <queue>
 
 #include "RecvBuffer.h"
@@ -13,6 +13,8 @@ class GameServer;
 class Session
 {
 public:
+	Session() = default;
+
 	Session(int sessionID, boost::asio::io_context& io_context, GameServer* pServer);
 	~Session();
 
@@ -38,7 +40,9 @@ private:
 	int dataEndPos = 0;  // 현재까지 패킷 버퍼에 저장된 데이터의 끝을 가리킴 
 	
 
-	RecvBuffer recvBuffer;
+	boost::circular_buffer<char> circularBuffer;	// boost의 circular - buffer
+	RecvBuffer recvBuffer; // RingBuffer..
+
 	std::array<char, 65536> packetBuffer{}; // 수신된 packet 데이터를 저장하고 처리
 	std::array<char, 65536> reeiveBuff{};
 

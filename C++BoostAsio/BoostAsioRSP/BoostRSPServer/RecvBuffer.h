@@ -5,6 +5,7 @@ class RecvBuffer
 {
 	enum {BUFFER_COUNT = 10};
 public:
+	RecvBuffer() = default;
 	RecvBuffer(int bufferSize);
 	~RecvBuffer() = default;
 
@@ -17,7 +18,7 @@ public:
 	char* WritePos() { return &buffer[writePos]; }
 
 	//read할 수 있는 공간 todo 이름을 CanReadSize로 변경 
-	int	  DataSize() { return writePos - readPos; }
+	int	  CanReadSize() { return writePos - readPos; }
 
 	//남은 공간 
 	int	  FreeSzie() { return bufferSize - writePos; }

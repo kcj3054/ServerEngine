@@ -7,7 +7,7 @@ RecvBuffer::RecvBuffer(int bufferSize) : bufferSize(bufferSize)
 
 void RecvBuffer::clean()
 {
-	int dataSize = DataSize();
+	int dataSize = CanReadSize();
 
 	//read, write 동일한 위치 쉽게 clean 가능 
 	if (dataSize == 0)
@@ -27,7 +27,7 @@ void RecvBuffer::clean()
 bool RecvBuffer::OnRead(int numOfBytes)
 {
 	// 읽을 수 있는 데이터보다 더 많은 양을 읽을려고 한다면
-	if (numOfBytes > DataSize())
+	if (numOfBytes > CanReadSize())
 	{
 		return false;
 	}
